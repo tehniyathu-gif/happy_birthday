@@ -1,79 +1,152 @@
+/* --- Core Reset & Refinement --- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+:root {
+  /* Design System Colors */
+  --bg-primary: #fffcf9; /* Warm off-white */
+  --accent-soft: #f8e1db; /* Light cream/rose */
+  --accent-main: #d4a373; /* Sophisticated Tan/Gold */
+  --accent-dark: #b67e5a; /* Deep Terracotta */
+  --text-main: #3e362e; /* Dark chocolate/neutral black */
+  --text-light: #7a7067;
+  --panel-bg: rgba(255, 255, 255, 0.85); /* For Glassmorphism */
+  
+  /* Standardized Spacing & Shadows */
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 15px rgba(0,0,0,0.07);
+  --shadow-lg: 0 20px 25px rgba(0,0,0,0.1);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1); /* Professional easing function */
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #fce4ec 0%, #ffe0b2 100%);
-  min-height: 100vh;
+  font-family: 'Georgia', serif; /* Elegant Main Font */
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
   overflow-x: hidden;
-  text-align: center;
   position: relative;
 }
 
-/* Music Player Widget */
+/* Base Styles for Professional Typography */
+h1, h2, h3 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300; /* Light & modern weight */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* --- Shared Refined Button --- */
+button {
+  font-family: 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--accent-main);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 4px; /* Slight round, more structured */
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), transform 0.3s var(--ease);
+  box-shadow: var(--shadow-sm);
+  margin-top: 1rem;
+}
+
+button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+/* --- Navigation/Music Player Widget --- */
 .music-player {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
   z-index: 1000;
+  backdrop-filter: blur(5px); /* Professional blur effect */
+  border-radius: 20px;
 }
 
 .music-player button {
-  background: #ffffff;
-  border: 2px solid #ff4081;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: bold;
-  color: #ff4081;
-  cursor: pointer;
+  background: var(--panel-bg);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent-soft);
+  box-shadow: none;
+  padding: 6px 14px;
+  margin-top: 0;
 }
 
-/* Stage Layouts */
+/* --- Landing Page Stage --- */
 .stage {
-  padding: 60px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
 }
 
 .hidden {
   display: none !important;
 }
 
-/* Envelope Styling & Animation */
+.teaser-header h1 {
+  font-size: 3rem;
+  color: var(--accent-dark);
+}
+
+.teaser-header p {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* --- Professional Envelope Structure --- */
 .envelope-wrapper {
-  margin-top: 40px;
+  margin-top: 60px;
   cursor: pointer;
+  perspective: 1000px;
 }
 
 .envelope {
-  width: 280px;
-  height: 180px;
-  background: #ff5252;
+  width: 320px;
+  height: 200px;
+  background: #fdf0ec; /* Soft antique white */
   position: relative;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  transition: transform 0.3s;
+  border: 1px solid #e8d0c9;
+  border-radius: 4px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.4s var(--ease);
 }
 
 .envelope:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
 }
 
 .flap {
   position: absolute;
   top: 0;
   left: 0;
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-top: 100px solid #ff1744;
+  width: 100%;
+  height: 100%;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 110px solid #f2ddd6; /* Slightly darker than envelope body */
   transform-origin: top;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s var(--ease);
   z-index: 3;
 }
 
@@ -86,35 +159,55 @@ body {
   position: absolute;
   top: 10px;
   left: 15px;
-  width: 250px;
-  height: 160px;
+  width: 290px;
+  height: 180px;
   background: #ffffff;
-  border-radius: 8px;
-  padding: 15px;
-  transition: transform 0.6s ease, top 0.6s ease;
+  border-radius: 2px;
+  padding: 25px;
+  transition: transform 0.8s var(--ease), top 0.8s var(--ease);
   z-index: 2;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .envelope.open .letter {
-  top: -100px;
-  height: auto;
+  top: -120px;
+  height: 220px;
   z-index: 4;
+  box-shadow: var(--shadow-lg);
+  transform: rotate(1deg); /* Slight natural rotation */
 }
 
-/* Desk & Flip Cards */
+.letter-content h2 {
+  font-size: 1.5rem;
+  color: var(--accent-dark);
+  text-transform: none;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+}
+
+/* --- The Birthday Desk Grid --- */
+#desk-stage h2 {
+  margin-bottom: 3rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 1rem;
+}
+
 .desk-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin: 40px 0;
-  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  width: 100%;
+  padding: 20px;
 }
 
+/* Re-styled Flip Cards */
 .card-flip {
-  width: 220px;
-  height: 260px;
+  height: 340px;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -124,7 +217,7 @@ body {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 0.7s var(--ease);
 }
 
 .card-flip.flipped .card-inner {
@@ -136,118 +229,96 @@ body {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 12px;
+  border-radius: 8px;
   background: white;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background: #fff8e1;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  justify-content: center;
+  font-size: 1.1rem;
 }
 
 .card-front img {
   width: 100%;
-  height: 160px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
+.card-front p {
+  margin-top: auto;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Styled Voice Note Card */
 .desk-card {
-  width: 220px;
-  height: 260px;
+  height: 340px;
   background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.03);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Floating Balloons */
+.voice-card h3 {
+  font-size: 1rem;
+  color: var(--accent-dark);
+}
+
+/* Finale Styling */
+.finale-trigger {
+  margin-top: 6rem;
+}
+
+.finale-trigger button {
+  background: #2e282a; /* Dark, sophisticated color */
+  padding: 16px 40px;
+  font-size: 1rem;
+}
+
+/* --- FX: Sophisticated Balloons --- */
 .balloon {
   position: fixed;
   bottom: -100px;
-  width: 40px;
-  height: 50px;
+  width: 30px;
+  height: 38px;
   border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
   cursor: pointer;
   z-index: 100;
-  animation: floatUp 8s linear infinite;
+  animation: floatUpProfessional 10s linear infinite;
+  opacity: 0.8; /* Professional transparency */
+  backdrop-filter: blur(1px);
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+@keyframes floatUpProfessional {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-130vh) translateX(30px) rotate(10deg); opacity: 0; }
 }
 
-/* Cursor Sparkles */
+/* Sparkle trail refinement */
 .sparkle {
   position: fixed;
   pointer-events: none;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #ff4081;
   animation: fadeOut 0.8s linear forwards;
   z-index: 9999;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0); }
-}
-
-/* Buttons & Finale Modal */
-button {
-  background: #ff4081;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.modal {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 400px;
-  width: 90%;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.gift-box {
-  margin-top: 20px;
-  padding: 40px 20px;
-  background: #ffe082;
-  border: 2px dashed #ff8f00;
-  border-radius: 10px;
-  cursor: pointer;
 }
