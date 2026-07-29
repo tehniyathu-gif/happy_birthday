@@ -1,28 +1,26 @@
-// 1. Interactive Cursor Trail
+// 1. Interactive Cursor Trail (Refined Palette)
 document.addEventListener('mousemove', function(e) {
   const sparkle = document.createElement('div');
   sparkle.className = 'sparkle';
   sparkle.style.left = e.clientX + 'px';
   sparkle.style.top = e.clientY + 'px';
   
-  // Random glitter colors
-  const colors = ['#ff4081', '#ffeb3b', '#00e676', '#00b0ff'];
+  const colors = ['#d4a373', '#b67e5a', '#f8e1db', '#e8d0c9'];
   sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
   
   document.body.appendChild(sparkle);
   setTimeout(() => sparkle.remove(), 800);
 });
 
-// 2. Floating Balloons & Pop Mechanic
+// 2. Floating Balloons & Pop Mechanic (Refined Palette)
 function createBalloon() {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
   balloon.style.left = Math.random() * 90 + 'vw';
   
-  const colors = ['#ff1744', '#f50057', '#d500f9', '#651fff', '#3d5afe', '#00e5ff'];
+  const colors = ['#f8e1db', '#f2ddd6', '#e8d0c9', '#d4a373'];
   balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
   
-  // Pop balloon on click
   balloon.addEventListener('click', function() {
     balloon.style.transform = 'scale(1.5)';
     balloon.style.opacity = '0';
@@ -30,9 +28,9 @@ function createBalloon() {
   });
 
   document.body.appendChild(balloon);
-  setTimeout(() => balloon.remove(), 8000);
+  setTimeout(() => balloon.remove(), 10000);
 }
-setInterval(createBalloon, 2000);
+setInterval(createBalloon, 2500);
 
 // 3. Audio Player Toggle
 const bgMusic = document.getElementById('bgMusic');
@@ -58,7 +56,7 @@ mainEnvelope.addEventListener('click', () => {
 });
 
 unlockDeskBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevents envelope re-triggering
+  e.stopPropagation();
   deskStage.classList.remove('hidden');
   deskStage.scrollIntoView({ behavior: 'smooth' });
 });
@@ -88,11 +86,11 @@ const giftBox = document.getElementById('giftBox');
 
 finaleBtn.addEventListener('click', () => {
   finaleModal.classList.remove('hidden');
-  // Trigger Canvas Confetti Explosion
   confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
+    particleCount: 120,
+    spread: 80,
+    origin: { y: 0.6 },
+    colors: ['#d4a373', '#b67e5a', '#f8e1db']
   });
 });
 
@@ -101,5 +99,5 @@ closeModal.addEventListener('click', () => {
 });
 
 giftBox.addEventListener('click', () => {
-  giftBox.innerHTML = "<h3>🎟️ Trip to Paris / Concert Tickets!</h3><p>(Replace this with your real gift details!)</p>";
+  giftBox.innerHTML = "<h3>🎟️ Trip / Concert Tickets!</h3><p>(Replace this with your real gift details!)</p>";
 });
