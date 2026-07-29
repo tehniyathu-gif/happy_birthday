@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Canvas Confetti Library for Finale -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Floating Audio Player (Top Right) -->
+  <div class="music-player">
+    <button id="musicToggle">🎵 Play Song</button>
+    <!-- Replace audio source later -->
+    <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+  </div>
+
+  <!-- Stage 1 & 2: Landing Page & Main Envelope -->
+  <section id="hero-stage" class="stage">
+    <div class="teaser-header">
+      <h1>Happy Birthday, [His Name]! 🎉</h1>
+      <p>You have special mail waiting...</p>
+    </div>
+
+    <!-- Main Envelope Unit -->
+    <div class="envelope-wrapper" id="mainEnvelope">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+          <div class="letter-content">
+            <h2>Happy Birthday! ❤️</h2>
+            <p>Click below to open your birthday desk and explore your surprises.</p>
+            <button id="unlockDeskBtn">Explore Surprises 👇</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage 3: Multi-Card Desk & Voice Notes (Hidden initially) -->
+  <section id="desk-stage" class="stage hidden">
+    <h2>Your Birthday Desk</h2>
+    <p>Click the cards and voice notes below to reveal memories!</p>
+
+    <div class="desk-grid">
+      <!-- Polaroid Memory 1 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/200" alt="Memory 1">
+            <p>Click to Flip 📷</p>
+          </div>
+          <div class="card-back">
+            <p>Write your favorite memory or story here!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice Note Card -->
+      <div class="desk-card voice-card">
+        <h3>🎙️ A Voice Note for You</h3>
+        <button class="play-voice-btn" onclick="toggleVoiceNote('voice1')">▶ Play Message</button>
+        <audio id="voice1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+      </div>
+
+      <!-- Polaroid Memory 2 -->
+      <div class="card-flip">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://via.placeholder.com/200" alt="Memory 2">
+            <p>Click to Flip 📷</p>
+          </div>
+          <div class="card-back">
+            <p>Another special note or message goes here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 4: Finale Button -->
+    <div class="finale-trigger">
+      <button id="finaleBtn">One Last Surprise...🎁</button>
+    </div>
+  </section>
+
+  <!-- Finale Overlay Modal -->
+  <div id="finaleModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Your Main Gift Reveal!</h2>
+      <p>Scratch off or tap below to reveal your real-life surprise!</p>
+      <div class="gift-box" id="giftBox">
+        <p>🎁 Tap to Open Your Present!</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
