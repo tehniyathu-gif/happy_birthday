@@ -7,12 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let isPlaying = false;
   let wasBgMusicPlayingBeforeVN = false;
 
+  // Ensure audio skips the first 5 seconds the moment it starts playing
+  bgMusic.addEventListener("play", () => {
+    if (bgMusic.currentTime < 5) {
+      bgMusic.currentTime = 5;
+    }
+  });
+
   function startMusic() {
     if (!isPlaying) {
-      if (bgMusic.currentTime < 5) {
-        bgMusic.currentTime = 5;
-      }
-
       bgMusic.play().then(() => {
         isPlaying = true;
         musicToggle.textContent = "⏸ Pause Song";
@@ -33,9 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
   musicToggle.addEventListener("click", (e) => {
     e.stopPropagation();
     if (!isPlaying) {
-      if (bgMusic.currentTime < 5) {
-        bgMusic.currentTime = 5;
-      }
       bgMusic.play();
       musicToggle.textContent = "⏸ Pause Song";
       isPlaying = true;
